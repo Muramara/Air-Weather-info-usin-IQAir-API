@@ -15,6 +15,7 @@
         <input type="text" name="country" placeholder="Enter Country..."><br>
         <input type="text" name="state" placeholder="Enter State..."><br>
         <input type="text" name="city" placeholder="Enter City..."><br><br>
+        <input type="submit" value="Submit"><br><br>
     </form>
 
     <div>
@@ -63,6 +64,22 @@
         <% for (var i = 0; i < ctList.length; i++){ %>
             <p><%= ctList[i].city %></p>
         <% } %>
+    <% } %>
+
+    <% if (locals.wthData){ %>
+        <h2>These is the weather data for <%= cityName %></h2>
+        <p>City: <%= wthData.city %></p>
+        <p>Country: <%= wthData.country %></p>
+        <p>Weather</p>
+        <p>Timestamp: <%= wthData.current.weather.ts %></p>
+        <p>Temperature(Celsius): <%= wthData.current.weather.tp %></p>
+        <p>Humidity: <%= wthData.current.weather.hu %></p>
+        <p>Wind Speed(m/s): <%= wthData.current.weather.ws %></p>
+        <p>Summarized description: <%= icon %></p>
+        <p>Pollution</p>
+        <p>Timestamp: <%= wthData.current.pollution.ts %></p>
+        <p>AQI value based on US EPA standard: <%= wthData.current.pollution.aqius %></p>
+        <p>AQI value based on China MEP standard: <%= wthData.current.pollution.aqicn %></p>
     <% } %>
 </body>
 </html>
