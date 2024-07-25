@@ -25,23 +25,37 @@ app.get("/country", async (req,res) => {
 
 app.get("/state", async (req,res) => {
     res.render("index.ejs",{getStateList: true});
-    // try{
-    //     const response = await axios.get(generalAPI_URL+"states?country={{COUNTRY_NAME}}&key="+yourTokenKey);
-    //     res.render("index.ejs",{cList: response.data});
-    // }catch(error){
-    //     res.render("index.ejs",{cList: error.data.message});
-    // }
+});
+
+app.post("/getStates", async (req,res) => {
+    try{
+        const response = await axios.get(generalAPI_URL+"states?country="+req.body["chosenCountry"]+"&key="+yourTokenKey);
+        res.render("index.ejs",{
+            sList: response.data.data,
+            countryName: req.body["chosenCountry"]
+        });
+    }catch(error){
+        res.render("index.ejs",{err: error.data.message});
+    }
 });
 
 app.get("/city", async (req,res) => {
     res.render("index.ejs",{getCityList: true});
-    // try{
-    //     const response = await axios.get(generalAPI_URL+"cities?state={{STATE_NAME}}&country={{COUNTRY_NAME}}&key="+yourTokenKey);
-    //     res.render("index.ejs",{cList: response.data});
-    // }catch(error){
-    //     res.render("index.ejs",{cList: error.data.message});
-    // }
 });
+
+app.post("/getCities", async (req,res) => {
+    try{
+        const response = await axios.get(generalAPI_URL+"cities?state="+req.body["chosenState"]+
+            "&country="+req.body["chosenCountry"]+"&key="+yourTokenKey);
+        res.render("index.ejs",{
+            ctList: response.data.data,
+            stateName: req.body["chosenState"],
+            countryName: req.body["chosenCountry"]
+        });
+    }catch(error){
+        res.render("index.ejs",{err: error.data.message});
+    }
+})
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);

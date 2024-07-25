@@ -43,11 +43,26 @@
         </form>
     <% } %>
 
+    <% if (locals.sList){ %>
+        <h2>These are the supported states in <%= countryName %>:</h2>
+        <% for (var i = 0; i < sList.length; i++){ %>
+            <p><%= sList[i].state %></p>
+        <% } %>
+    <% } %>
+
     <% if (locals.getCityList){ %>
         <form action="/getCities" method="post">
-            <br><br><input type="text" name="chosenState" placeholder="Enter State...">
+            <br><br><input type="text" name="chosenCountry" placeholder="Enter Country...">
+            <input type="text" name="chosenState" placeholder="Enter State...">
             <input type="submit" value="Submit">
         </form>
+    <% } %>
+
+    <% if (locals.ctList){ %>
+        <h2>These are the supported cities in <%= stateName %>, <%= countryName %>:</h2>
+        <% for (var i = 0; i < ctList.length; i++){ %>
+            <p><%= ctList[i].city %></p>
+        <% } %>
     <% } %>
 </body>
 </html>
