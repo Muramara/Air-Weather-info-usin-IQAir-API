@@ -1,0 +1,50 @@
+header{
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.returned-data {
+    display: flex;
+    justify-content: center;
+}
+
+.initial-info {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.get-menu {
+    display: flex;
+    justify-content: center;
+}
+
+.get-menu > a {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.list-menu {
+    margin-top: 50px;
+}
+
+.returned-list {
+    background-color: black;
+    color: white;
+    margin-top: 50px;
+    padding: 30px;
+    border: solid grey 5px;
+}
+
+.weather-info{
+    background-color: black;
+    color: white;
+    margin-top: 50px;
+    padding: 30px;
+    border: solid grey 5px;
+}
+
+.weather-info span {
+    color: palevioletred;
+}

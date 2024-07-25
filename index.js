@@ -9,6 +9,7 @@ const yourTokenKey = "75f7e8d9-099d-4b5e-a497-a3d28e99485d";
 let iconIndex;
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
 app.get("/", (req,res) => {
     res.render("index.ejs");
@@ -17,7 +18,6 @@ app.get("/", (req,res) => {
 app.get("/country", async (req,res) => {
     try{
         const response = await axios.get(generalAPI_URL+"countries?key="+yourTokenKey);
-        console.log(response.data[0]);
         res.render("index.ejs",{cList: response.data.data});
     }catch(error){
         res.render("index.ejs",{err: error.data.message});
