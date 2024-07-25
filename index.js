@@ -11,4 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req,res) => {
     res.render("index.ejs");
-})
+});
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
