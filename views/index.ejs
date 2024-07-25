@@ -8,6 +8,46 @@
 <body>
     <h1>Welcome to this Air Quality & Weather Information Website</h1>
     <p>This website allows one to get current air quality and weather information about a specific place</p>
-    <p>The website employs the <a href="https://www.iqair.com/commercial-air-quality-monitors/api" target="_blank">IQAir API</a></p>
+    <p>The website employs the <a href="https://www.iqair.com/commercial-air-quality-monitors/api"
+        target="_blank">IQAir API</a></p>
+
+    <form action="/getWeather" method="post">
+        <input type="text" name="country" placeholder="Enter Country..."><br>
+        <input type="text" name="state" placeholder="Enter State..."><br>
+        <input type="text" name="city" placeholder="Enter City..."><br><br>
+    </form>
+
+    <div>
+        <form method="get">
+            <input type="submit" name="page" value="Country List" formaction="/country">
+            <input type="submit" name="page" value="State List" formaction="/state">
+            <input type="submit" name="page" value="City List" formaction="/city">
+        </form>
+    </div>
+
+    <% if (locals.cList){ %>
+        <h2>These are the supported countries:</h2>
+        <% for (var i = 0; i < cList.length; i++){ %>
+            <p><%= cList[i].country %></p>
+        <% } %>
+    <% } %>
+
+    <% if (locals.err){ %>
+        <p><%= err %></p>
+    <% } %>
+
+    <% if (locals.getStateList){ %>
+        <form action="/getStates" method="post">
+            <br><br><input type="text" name="chosenCountry" placeholder="Enter Country...">
+            <input type="submit" value="Submit">
+        </form>
+    <% } %>
+
+    <% if (locals.getCityList){ %>
+        <form action="/getCities" method="post">
+            <br><br><input type="text" name="chosenState" placeholder="Enter State...">
+            <input type="submit" value="Submit">
+        </form>
+    <% } %>
 </body>
 </html>
