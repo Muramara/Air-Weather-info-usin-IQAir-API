@@ -54,7 +54,7 @@ app.post("/getCities", async (req,res) => {
             countryName: req.body["chosenCountry"]
         });
     }catch(error){
-        res.render("index.ejs",{err: error.data.message});
+        res.render("index.ejs",{err: "there was an error"});
     }
 });
 

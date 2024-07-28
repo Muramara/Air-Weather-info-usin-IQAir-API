@@ -52,7 +52,10 @@
                 <div class="returned-list">
                     <h2>These are the supported countries:</h2>
                     <% for (var i = 0; i < cList.length; i++){ %>
-                        <p><%= cList[i].country %></p>
+                        <form action="/getStates" method="post">
+                            <input type="text" name="chosenCountry" value="<%=cList[i].country%>" hidden>
+                            <input type="submit" class="name-btn" value="<%=cList[i].country%>">
+                        </form>
                     <% } %>
                 </div>
             <% } %>
@@ -75,7 +78,11 @@
                 <div class="returned-list">
                     <h2>These are the supported states in <%= countryName %>:</h2>
                 <% for (var i = 0; i < sList.length; i++){ %>
-                    <p><%= sList[i].state %></p>
+                    <form action="/getCities" method="post">
+                        <input type="text" name="chosenCountry" value="<%=countryName%>" hidden>
+                        <input type="text" name="chosenState" value="<%=sList[i].state%>" hidden>
+                        <input type="submit" class="name-btn" value="<%=sList[i].state%>">
+                    </form>
                 <% } %>
                 </div>
             <% } %>
@@ -95,7 +102,12 @@
                 <div class="returned-list">
                     <h2>These are the supported cities in <%= stateName %>, <%= countryName %>:</h2>
                 <% for (var i = 0; i < ctList.length; i++){ %>
-                    <p><%= ctList[i].city %></p>
+                    <form action="/getWeather" method="post">
+                        <input type="text" name="country" value="<%=countryName%>" hidden>
+                        <input type="text" name="state" value="<%=stateName%>" hidden>
+                        <input type="text" name="city" value="<%=ctList[i].city%>" hidden>
+                        <input type="submit" class="name-btn" value="<%=ctList[i].city%>">
+                    </form>
                 <% } %>
                 </div>
             <% } %>

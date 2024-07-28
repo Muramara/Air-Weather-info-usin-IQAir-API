@@ -12,6 +12,18 @@
     border-radius: 25%;
 }
 
+.name-btn{
+    background: none!important;
+    border: none;
+    padding: 5px!important;
+    /*optional*/
+    /* font-family: arial, sans-serif; */
+    /*input has OS specific font-family*/
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 header {
     background-color: lightblue;
 }
