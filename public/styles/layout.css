@@ -2,17 +2,28 @@ header{
     display: flex;
     justify-content: center;
     text-transform: uppercase;
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+.intro-text {
+    text-align: justify;
+}
+
+.out-of-header {
+    height: 100vh;
 }
 
 .returned-data {
     display: flex;
     justify-content: center;
+    background-color: lightgreen;
 }
 
 .initial-info {
     display: flex;
     justify-content: space-around;
-    margin-top: 50px;
+    padding-top: 50px;
 }
 
 .get-menu {
@@ -27,6 +38,7 @@ header{
 
 .list-menu {
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .returned-list {
@@ -47,4 +59,9 @@ header{
 
 .weather-info span {
     color: palevioletred;
+}
+
+.input-field {
+    margin-top: 10px;
+
 }

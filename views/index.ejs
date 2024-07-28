@@ -9,104 +9,116 @@
 
     <header><%- include("partials/header.ejs") %></header>
 
-    <div class="initial-info">
-        <div>
-            <h2>Welcome to this Air Quality & Weather Information Website</h2>
-        <p>This website allows one to get current air quality and weather information about a specific place</p>
-        <p>The website employs the <a href="https://www.iqair.com/commercial-air-quality-monitors/api"
-            target="_blank">IQAir API</a></p>
+    <div class="out-of-header">
+        <div class="initial-info">
+            <div class="intro-text">
+                <h2>Welcome to this Air Quality & Weather <br> Information Website</h2>
+                <p>
+                    This website allows one to get current
+                    air quality and weather information <br>
+                    about a specific states around the world
+                    by using the
+                    <a href="https://www.iqair.com/commercial-air-quality-monitors/api" target="_blank">
+                        IQAir API
+                    </a>
+                    .
+                </p>
+            </div>
+        
+            <div>
+                <form action="/getWeather" method="post">
+                    <legend>Weather Form</legend>
+                    <input class="input-field" type="text" name="country" placeholder="Enter Country..."><br>
+                    <input class="input-field" type="text" name="state" placeholder="Enter State..."><br>
+                    <input class="input-field" type="text" name="city" placeholder="Enter City..."><br><br>
+                    <input class="submit-btn" type="submit" value="Submit"><br><br>
+                </form>
+            </div>
         </div>
     
-        <div>
-            <form action="/getWeather" method="post">
-                <input type="text" name="country" placeholder="Enter Country..."><br>
-                <input type="text" name="state" placeholder="Enter State..."><br>
-                <input type="text" name="city" placeholder="Enter City..."><br><br>
-                <input type="submit" value="Submit"><br><br>
+        <div class="list-menu">
+            <form method="get">
+                <div class="get-menu">
+                    <a href="/country">Get countries list</a>
+                    <a href="/state">Get states list</a>
+                    <a href="/city">Get cities list</a>
+                </div>
             </form>
         </div>
-    </div>
-
-    <div class="list-menu">
-        <form method="get">
-            <div class="get-menu">
-                <a href="/country">Get countries list</a>
-                <a href="/state">Get states list</a>
-                <a href="/city">Get cities list</a>
-            </div>
-        </form>
-    </div>
-
-    <div class="returned-data">
+    
+        <div class="returned-data">
+            
+            <% if (locals.cList){ %>
+                <div class="returned-list">
+                    <h2>These are the supported countries:</h2>
+                    <% for (var i = 0; i < cList.length; i++){ %>
+                        <p><%= cList[i].country %></p>
+                    <% } %>
+                </div>
+            <% } %>
         
-        <% if (locals.cList){ %>
-            <div class="returned-list">
-                <h2>These are the supported countries:</h2>
-            <% for (var i = 0; i < cList.length; i++){ %>
-                <p><%= cList[i].country %></p>
+            <% if (locals.err){ %>
+                <div><p><%= err %></p></div>
             <% } %>
-            </div>
-        <% } %>
-    
-        <% if (locals.err){ %>
-            <div><p><%= err %></p></div>
-        <% } %>
-    
-        <% if (locals.getStateList){ %>
-            <div>
-                <form action="/getStates" method="post">
-                    <br><br><input type="text" name="chosenCountry" placeholder="Enter Country...">
-                    <br><br><input type="submit" value="Submit">
-                </form>
-            </div>
-        <% } %>
-    
-        <% if (locals.sList){ %>
-            <div class="returned-list">
-                <h2>These are the supported states in <%= countryName %>:</h2>
-            <% for (var i = 0; i < sList.length; i++){ %>
-                <p><%= sList[i].state %></p>
+        
+            <% if (locals.getStateList){ %>
+                <div>
+                    <form action="/getStates" method="post">
+                        <legend>States Form</legend>
+                        <input class="input-field" type="text" name="chosenCountry" placeholder="Enter Country...">
+                        <br><br><input class="submit-btn" type="submit" value="Submit">
+                    </form>
+                </div>
             <% } %>
-            </div>
-        <% } %>
-    
-        <% if (locals.getCityList){ %>
-            <div>
-                <form action="/getCities" method="post">
-                    <br><br><input type="text" name="chosenCountry" placeholder="Enter Country...">
-                    <br><br><input type="text" name="chosenState" placeholder="Enter State...">
-                    <br><br><input type="submit" value="Submit">
-                </form>
-            </div>
-        <% } %>
-    
-        <% if (locals.ctList){ %>
-            <div class="returned-list">
-                <h2>These are the supported cities in <%= stateName %>, <%= countryName %>:</h2>
-            <% for (var i = 0; i < ctList.length; i++){ %>
-                <p><%= ctList[i].city %></p>
+        
+            <% if (locals.sList){ %>
+                <div class="returned-list">
+                    <h2>These are the supported states in <%= countryName %>:</h2>
+                <% for (var i = 0; i < sList.length; i++){ %>
+                    <p><%= sList[i].state %></p>
+                <% } %>
+                </div>
             <% } %>
-            </div>
-        <% } %>
+        
+            <% if (locals.getCityList){ %>
+                <div>
+                    <form action="/getCities" method="post">
+                        <legend>Cities Form</legend>
+                        <input class="input-field" type="text" name="chosenCountry" placeholder="Enter Country...">
+                        <br><input class="input-field" type="text" name="chosenState" placeholder="Enter State...">
+                        <br><br><input class="submit-btn" type="submit" value="Submit">
+                    </form>
+                </div>
+            <% } %>
+        
+            <% if (locals.ctList){ %>
+                <div class="returned-list">
+                    <h2>These are the supported cities in <%= stateName %>, <%= countryName %>:</h2>
+                <% for (var i = 0; i < ctList.length; i++){ %>
+                    <p><%= ctList[i].city %></p>
+                <% } %>
+                </div>
+            <% } %>
+        
+            <% if (locals.wthData){ %>
+                <div class="weather-info">
+                    <h2>These is the weather data for <%= cityName %></h2>
+                    <p>City: <span><%= wthData.city %></span></p>
+                    <p>Country: <span><%= wthData.country %></span></p>
+                    <p>Weather</p>
+                    <p>Timestamp: <span><%= wthData.current.weather.ts %></span></p>
+                    <p>Temperature(Celsius): <span><%= wthData.current.weather.tp %></span></p>
+                    <p>Humidity: <span><%= wthData.current.weather.hu %></span></p>
+                    <p>Wind Speed(m/s): <span><%= wthData.current.weather.ws %></span></p>
+                    <p>Summarized description: <span><%= icon %></span></p>
+                    <p>Pollution</p>
+                    <p>Timestamp: <span><%= wthData.current.pollution.ts %></span></p>
+                    <p>AQI value based on US EPA standard: <span><%= wthData.current.pollution.aqius %></span></p>
+                    <p>AQI value based on China MEP standard: <span><%= wthData.current.pollution.aqicn %></span></p>
+                </div>
+            <% } %>
     
-        <% if (locals.wthData){ %>
-            <div class="weather-info">
-                <h2>These is the weather data for <%= cityName %></h2>
-                <p>City: <span><%= wthData.city %></span></p>
-                <p>Country: <span><%= wthData.country %></span></p>
-                <p>Weather</p>
-                <p>Timestamp: <span><%= wthData.current.weather.ts %></span></p>
-                <p>Temperature(Celsius): <span><%= wthData.current.weather.tp %></span></p>
-                <p>Humidity: <span><%= wthData.current.weather.hu %></span></p>
-                <p>Wind Speed(m/s): <span><%= wthData.current.weather.ws %></span></p>
-                <p>Summarized description: <span><%= icon %></span></p>
-                <p>Pollution</p>
-                <p>Timestamp: <span><%= wthData.current.pollution.ts %></span></p>
-                <p>AQI value based on US EPA standard: <span><%= wthData.current.pollution.aqius %></span></p>
-                <p>AQI value based on China MEP standard: <span><%= wthData.current.pollution.aqicn %></span></p>
-            </div>
-        <% } %>
-
+        </div>
     </div>
 
 </body>

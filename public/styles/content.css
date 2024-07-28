@@ -1,0 +1,21 @@
+.input-field {
+    border: 1px solid blueviolet;
+    padding: 5%;
+    border-bottom-right-radius: 50%;
+}
+
+.submit-btn {
+    background-color: powderblue;
+    padding: 5px;
+    color: blueviolet;
+    border: 1px solid blueviolet;
+    border-radius: 25%;
+}
+
+header {
+    background-color: lightblue;
+}
+
+.out-of-header{
+    background-color: lightgreen;
+}
