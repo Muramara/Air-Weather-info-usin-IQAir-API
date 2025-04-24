@@ -1,6 +1,6 @@
 # AIR-WEATHER-INFO-USIN-IQAIR-API
 
-A Node.js application that provides real-time air quality and weather information using the IQAir API.
+A Node.js application that provides real-time, location-based air quality and weather information using the IQAir API.
 
 ## Features
 
@@ -45,7 +45,7 @@ node index.js
 
 2. Access the information on IQAir as well as API documentation:
 - [https://www.iqair.com/commercial-air-quality-monitors/api](https://www.iqair.com/commercial-air-quality-monitors/api) - Get more info on IQAir and their API
-You may need to sign up for an account to get an API key.
+- You may need to sign up for an account to get an API key.
 
 ## Contributing
 
@@ -61,5 +61,7 @@ You may need to sign up for an account to get an API key.
 
 ## Contact
 Sebastian Muramara
-Sebastian Muramara - [@SebastianM21248](https://x.com/SebastianM21248)
-Project Link: [https://github.com/yourusername/AIR-WEATHER-INFO-USING-IQAIR-API](https://github.com/yourusername/AIR-WEATHER-INFO-USING-IQAIR-API)
+
+X - [@SebastianM21248](https://x.com/SebastianM21248)
+
+Project Link: [AIR-WEATHER-INFO-USIN-IQAIR-API](https://github.com/Muramara/Air-Weather-info-usin-IQAir-API)
